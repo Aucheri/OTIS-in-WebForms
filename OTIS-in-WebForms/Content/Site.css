@@ -7,5 +7,152 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-color: red;
+    background-color: #fafafa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (width >= 64rem) {
+    body {
+        width: 50vw;
+        left: 50%;
+        transform: translateX(50%)
+    }
+}
+
+.chat-container {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
+    padding-inline: 1.25rem;
+    padding-block: 2.5rem;
+}
+
+.message-history {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.message {
+    position: relative;
+    width: fit-content;
+    max-width: 75%;
+    border-radius: 0.375rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    overflow-wrap: anywhere;
+
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.message:nth-child(odd) {
+    align-self: end;
+    border-bottom-right-radius: 0;
+}
+
+.message:nth-child(even) {
+    border-bottom-left-radius: 0;
+    background-color: #525252;
+    color: white;
+}
+
+.message::after {
+    display: block;
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 50%) rotate(45deg);
+    aspect-ratio: 1 / 1;
+    width: 1rem;
+    background-color: #e5e5e5;
+}
+
+.message:nth-child(even)::after {
+    left: 0;
+    background-color: #525252;
+    transform: translate(-50%, 50%) rotate(45deg);
+}
+
+.typing-area {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.typing {
+    aspect-ratio: 1 / 1;
+    width: 0.75rem;
+    border-radius: calc(infinity * 1px);
+    background-color: #e5e5e5;
+    animation: bounce 1s infinite;
+}
+
+.typing:nth-child(2) {
+    animation-delay: 50ms;
+}
+
+.typing:nth-child(3) {
+    animation-delay: 100ms;
+}
+
+.input-form {
+    position: relative;
+    left: 50%;
+    display: flex;
+    height: auto;
+    max-height: 9rem;
+    min-height: 1.2rem;
+    transform: translateX(-50%);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    border-radius: 1rem;
+    background-color: #262626;
+    padding: 0.5rem;
+}
+
+.input {
+    max-height: 100%;
+    min-height: 1rem;
+    width: calc(11/12 * 100%);
+    resize: none;
+    border: 0;
+    background: none;
+    overflow-wrap: anywhere;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+}
+
+.input::placeholder {
+    color: #d4d4d4;
+}
+
+.input-button {
+    aspect-ratio: 1 / 1;
+    height: 2rem;
+    border-radius: calc(infinity * 1px);
+    background-color: white;
+    padding: 0.5rem;
+    border: none;
+}
+
+.input-button:hover {
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
 }
